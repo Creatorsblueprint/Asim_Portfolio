@@ -8,6 +8,7 @@ import PaymentSuccess from "./paymentPopups/PaymentSuccess.jsx";
 import PaymentCancel from "./paymentPopups/PaymentCancel.jsx";
 import Nav from './Nav/Nav';
 import Footer from './Footer/Footer';
+import Consultation from './Consultation/Consultation';
 
 
 function App() {
@@ -48,6 +49,10 @@ function App() {
 
         </div>
 
+        <div className={activeNav === 'Consultation' ? 'active' : 'consultation'}>
+          <Consultation />
+
+        </div>
         <div className={activeNav === 'Gallery' ? 'active' : 'gallery'}>
           <Gallery />
 

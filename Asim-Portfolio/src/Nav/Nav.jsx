@@ -78,6 +78,10 @@ const Nav = ({ activeNav, setActiveNav, containerRef }) => {
                                 <a href="#Product" onClick={() => setActiveNav('Product')} >Product</a>
                             </li>
                             */}
+                            <li className={activeNav === 'Consultation' ? styles.active : ''}>
+                                <i class="ri-calendar-event-line"></i>
+                                <a href="#Consultation" onClick={() => setActiveNav('Consultation')} >1-on-1 Sessions</a>
+                            </li>
                             <li className={activeNav === 'Gallery' ? styles.active : ''}>
                                 <i class="ri-multi-image-line"></i>
                                 <a href="#Gallery" onClick={() => setActiveNav('Gallery')} >Gallery</a>
@@ -133,6 +137,10 @@ const Nav = ({ activeNav, setActiveNav, containerRef }) => {
                                     <a href="#Product" onClick={() => { setActiveNav('Product'); setHamMenu(false); }} >Product</a>
                                 </li>
                                 */}
+                                <li>
+                                    <i class="ri-calendar-event-line"></i>
+                                    <a href="#Consultation" onClick={() => { setActiveNav('Consultation'); setHamMenu(false); }} >1-on-1 Sessions</a>
+                                </li>
                                 <li>
                                     <i class="ri-multi-image-line"></i>
                                     <a href="#Gallery" onClick={() => { setActiveNav('Gallery'); setHamMenu(false); }} >Gallery</a>
