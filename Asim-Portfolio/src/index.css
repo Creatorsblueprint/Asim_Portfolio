@@ -1,79 +1,139 @@
-@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
 :root {
-  font-size: 90%;
-  font-family: 'Montserrat', sans-serif;
+  /* Typography Families */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-mono: 'JetBrains Mono', monospace;
 
+  /* Monochrome Color Tokens — Dark Architectural Surfaces */
+  --bg-primary: #080808;
+  --bg-secondary: #101010;
+  --bg-elevated: #161616;
+  --bg-glass: rgba(8, 8, 8, 0.86);
+
+  --text-primary: #FAFAFA;
+  --text-secondary: #A3A3A3;
+  --text-tertiary: #737373;
+
+  --border-subtle: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.28);
+
+  /* Monochrome Color Tokens — Light Editorial Consultation Sheet (matching PDF) */
+  --sheet-bg: #F7F7F5;
+  --sheet-surface: #FFFFFF;
+  --sheet-card-bg: #F2F2F0;
+  --sheet-card-featured-bg: #FFFFFF;
+  --sheet-text-primary: #111111;
+  --sheet-text-secondary: #404040;
+  --sheet-text-muted: #666666;
+  --sheet-border: #E2E2DF;
+  --sheet-border-strong: #111111;
+
+  /* High-Contrast Monochrome & Subtle Champagne Gold Accents */
+  --accent-primary: #FFFFFF;
+  --accent-inverse: #080808;
+  --accent-gold: #D4AF6A;
+  --accent-gold-bright: #E6C786;
+  --accent-gold-deep: #B88E44;
+  --accent-gold-subtle: rgba(212, 175, 106, 0.12);
+  --accent-gold-border: rgba(212, 175, 106, 0.38);
+  --accent-gold-glow: rgba(212, 175, 106, 0.22);
+  --gradient-gold: linear-gradient(135deg, #E6C786 0%, #C69B4B 100%);
+
+  /* Typography Scale */
+  --h1-size: clamp(2.5rem, 4.6vw, 4.35rem);
+  --h2-size: clamp(2rem, 3.4vw, 3.1rem);
+  --h3-size: clamp(1.35rem, 2vw, 1.75rem);
+  --p-size: 1.0625rem;
+
+  /* Layout & Spacing Tokens */
+  --container-max: 1220px;
+  --section-pad-y: clamp(4.5rem, 8vw, 7.5rem);
+  --section-pad-x: clamp(1.25rem, 4vw, 3rem);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --transition-fast: 180ms cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-smooth: 320ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  font-family: var(--font-sans);
   font-optical-sizing: auto;
   font-style: normal;
-  overflow-x: hidden;
-  /* Changed from overflow: hidden to avoid clipping vertical scroll if applied to root/body incorrectly, usually body has overflow-x hidden */
-  background: var(--bg-primary);
+  background-color: var(--bg-primary);
   color: var(--text-primary);
-
-  --bg-primary: black;
-  --bg-secondary: #1E1E1E;
-  --bg-tertiary: #FFB71B;
-  --bg-quaternary: #CE8D00;
-
-  --text-primary: white;
-  --text-secondary: #C0C0C0;
-  --text-tertiary: #A6A6A6;
-
-  --accent-primary: #ffbd59;
-
-  /* Typography Standard */
-  --h1-size: 4rem;
-  --h2-size: 2.5rem;
-  --h3-size: 1.8rem;
-  --p-size: 1.1rem;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-
+html,
 body {
-  margin: 0 auto;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
-h1 {
-  font-family: 'Montserrat', sans-serif;
-}
-
-h2 {
-  font-family: 'Alex Brush', cursive;
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-sans);
+  margin: 0;
+  letter-spacing: -0.025em;
+  color: inherit;
 }
 
 p {
-  font-family: 'Roboto', sans-serif;
+  font-family: var(--font-sans);
+  margin: 0;
+  line-height: 1.65;
 }
 
+a,
+button {
+  font-family: var(--font-sans);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 3px;
+}
 
 .app {
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 8rem 1fr 1fr;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-  width: 100vw;
-  height: 100vh;
-
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
 }
 
 .app .header {
-  grid-column: 1 / -1;
+  width: 100%;
+  z-index: 1000;
 }
 
 .app .main {
-  grid-column: 1 / -1;
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .app .footer {
-  grid-column: 1 / -1;
+  width: 100%;
 }
 
 .app .activeSection {
@@ -84,23 +144,8 @@ p {
   display: none;
 }
 
-
-
-@media (max-width: 767px) {
-
-  :root {
-    font-size: 80%;
-    --h1-size: 2.5rem;
-    --h2-size: 2rem;
-    --h3-size: 1.5rem;
-    --p-size: 1rem;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
-
-  .app {
-    grid-template-columns: minmax(100%, 1fr);
-    max-width: 100%;
-
-
-  }
-
 }

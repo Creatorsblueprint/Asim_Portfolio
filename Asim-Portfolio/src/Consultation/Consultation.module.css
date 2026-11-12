@@ -1,68 +1,722 @@
-.consultationContainer {
-    background-color: #131313;
-    z-index: 15;
-    padding: 5rem 2rem;
-    position: relative;
+.consultationSection {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  padding: var(--section-pad-y) 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.container {
+  max-width: var(--container-max);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--section-pad-x);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 5vw, 3.75rem);
+}
+
+.headerBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.65rem;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+}
+
+.title {
+  font-size: var(--h2-size);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+
+.serifItalic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.12em;
+  color: var(--accent-gold-bright);
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+/* Side-by-Side Dark Minimalist Cards */
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.75rem;
+  align-items: stretch;
+}
+
+.card {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.75rem, 3.5vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.card:hover {
+  border-color: var(--accent-gold-border);
+}
+
+.cardFeatured {
+  background: linear-gradient(180deg, rgba(212, 175, 106, 0.06) 0%, #0A0A0A 100%);
+  border-color: var(--accent-gold-border);
+}
+
+.cardActive {
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 1px var(--accent-gold), 0 20px 50px rgba(0, 0, 0, 0.65);
+}
+
+.cardTopRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.cardIndex {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  color: var(--accent-gold);
+}
+
+.cardBadge {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  background: var(--gradient-gold);
+  color: var(--bg-primary);
+}
+
+.cardHeaderRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.cardTitle {
+  font-size: clamp(1.45rem, 2.2vw, 1.85rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.15;
+}
+
+.cardSubtitle {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.priceBlock {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+.priceText {
+  font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.cardFeatured .priceText {
+  color: var(--accent-gold-bright);
+}
+
+.durationText {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.cardTagline {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.cardSummary {
+  font-size: 0.94rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.cardIdeal {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.cardIdeal span {
+  color: var(--accent-gold);
+  font-weight: 600;
+}
+
+.bookBtn {
+  margin-top: auto;
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.4rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background-color: transparent;
+  color: var(--text-primary);
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.bookBtn:hover {
+  background: var(--gradient-gold);
+  color: var(--bg-primary);
+  border-color: var(--accent-gold);
+  box-shadow: 0 10px 26px rgba(212, 175, 106, 0.22);
+}
+
+.bookBtnPrimary {
+  background: var(--gradient-gold);
+  color: var(--bg-primary);
+  border-color: var(--accent-gold);
+  box-shadow: 0 8px 24px rgba(212, 175, 106, 0.18);
+}
+
+.bookBtnPrimary:hover {
+  filter: brightness(1.06);
+  box-shadow: 0 12px 30px rgba(212, 175, 106, 0.28);
+}
+
+/* On-Site Booking Studio: Intro Video + Direct Calendly */
+.bookingStudio {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--accent-gold-border);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75);
+  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.studioHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.studioTitleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  max-width: 100%;
+}
+
+.studioStepTag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--accent-gold);
+}
+
+.studioTitle {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  word-break: break-word;
+}
+
+.studioControls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 100%;
+}
+
+.tierPillBtn {
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  max-width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.tierPillBtnActive {
+  background: var(--gradient-gold);
+  color: var(--bg-primary);
+  border-color: var(--accent-gold);
+}
+
+.closeStudioBtn {
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 50%;
+  border: 1px solid var(--border-subtle);
+  background: transparent;
+  color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.studioContentGrid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 2rem;
+  align-items: start;
+  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.introVideoColumn,
+.calendlyColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.columnHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.stepPill {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  background-color: var(--accent-gold-subtle);
+  border: 1px solid var(--accent-gold-border);
+  color: var(--accent-gold-bright);
+}
+
+.columnHeader strong {
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.videoFrameWrap {
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  background-color: #000;
+  box-sizing: border-box;
+}
+
+.introIframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.sessionQuickFacts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.sessionQuickFacts div {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.sessionQuickFacts span {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  color: var(--text-tertiary);
+}
+
+.sessionQuickFacts strong {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  word-break: break-word;
+}
+
+.columnHeaderLeft {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.directCalendlyLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  color: var(--accent-gold);
+  text-decoration: none;
+  padding: 0.35rem 0.75rem;
+  background-color: rgba(212, 175, 106, 0.08);
+  border: 1px solid var(--accent-gold-border);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.directCalendlyLink:hover {
+  background-color: rgba(212, 175, 106, 0.18);
+  color: #fff;
+  border-color: var(--accent-gold);
+}
+
+.mobilePlanSwitcher {
+  display: none;
+}
+
+.mobilePlanTab {
+  display: none;
+}
+
+.mobileSlideDots {
+  display: none;
+}
+
+.calendlyEmbedBox {
+  width: 100%;
+  max-width: 100%;
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  overflow-y: visible;
+  border: 1px solid var(--border-subtle);
+  background-color: #0D0D0D;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
+
+.calendlyEmbedBox :global(.calendly-inline-widget),
+.calendlyEmbedBox iframe {
+  width: 100% !important;
+  min-width: 320px !important;
+  min-height: 720px !important;
+  box-sizing: border-box !important;
+  pointer-events: auto !important;
+  touch-action: auto !important;
+}
+
+@media (max-width: 980px) {
+  .studioContentGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 840px) {
+  .mobilePlanSwitcher {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+    margin-bottom: 0.85rem;
+    padding: 0.35rem;
+    background-color: #0c0c0c;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+  }
+
+  .mobilePlanTab {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.75rem 0.5rem;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .mobilePlanTabActive {
+    background-color: #181818;
+    border-color: var(--accent-gold);
+    color: var(--text-primary);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+  }
+
+  .mobilePlanTabNum {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--accent-gold);
+    font-weight: 700;
+  }
+
+  .mobilePlanTabTitle {
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .mobilePlanTabPrice {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--accent-gold);
+    padding: 0.15rem 0.45rem;
+    background-color: rgba(212, 175, 106, 0.1);
+    border-radius: 4px;
+  }
+
+  .cardsGrid {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    gap: 1.25rem;
+    padding: 0.5rem 0.25rem 1rem 0.25rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .cardsGrid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .card {
+    flex: 0 0 88%;
+    max-width: 360px;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+
+  .mobileSlideDots {
     display: flex;
     justify-content: center;
     align-items: center;
-}
+    gap: 0.6rem;
+    margin-top: 0.85rem;
+  }
 
-.consultationContent {
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
-}
+  .mobileSlideDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #262626;
+    border: 1px solid var(--border-subtle);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    padding: 0;
+  }
 
-.headerSection {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-}
-
-.headerSection h1 {
-    font-size: var(--h1-size, 3rem);
-    margin: 0;
-    color: var(--text-primary, #fff);
-}
-
-.headerSection h1 span {
-    color: var(--accent-primary, #ffb71b);
-}
-
-.headerSection .description {
-    font-size: 1.25rem;
-    font-weight: 200;
-    max-width: 800px;
-    color: var(--text-secondary, #ccc);
-    line-height: 1.6;
-    margin: 0;
-}
-
-.calendlyWrapper {
-    width: 100%;
-    border-radius: 12px;
-    overflow: hidden;
-    padding: 1rem;
-    background-color: #1e1e1e;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    height: 700px;
+  .mobileSlideDotActive {
+    width: 26px;
+    border-radius: 999px;
+    background-color: var(--accent-gold);
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 10px rgba(212, 175, 106, 0.6);
+  }
 }
 
 @media (max-width: 768px) {
-    .consultationContainer {
-        padding: 3rem 1.5rem;
-    }
-    .consultationContent {
-        gap: 2rem;
-    }
-    .calendlyWrapper {
-        height: 800px;
-        padding: 0;
-    }
+  .card {
+    align-items: center;
+    text-align: center;
+    padding: 1.75rem 1.35rem;
+  }
+
+  .cardTopRow {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .cardHeaderRow {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .priceBlock {
+    align-items: center;
+    text-align: center;
+  }
+
+  .bookBtn {
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 3.2rem;
+    padding: 0.9rem 1rem;
+    font-size: 0.88rem;
+    white-space: nowrap;
+  }
+
+  .bookingStudio {
+    padding: 1.25rem 0.75rem;
+    gap: 1.5rem;
+  }
+
+  .studioHeader {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .studioTitleGroup {
+    align-items: center;
+  }
+
+  .studioTitle {
+    font-size: 1.2rem;
+  }
+
+  .studioControls {
+    justify-content: center;
+  }
+
+  .tierPillBtn {
+    font-size: 0.75rem;
+    padding: 0.42rem 0.75rem;
+    line-height: 1.3;
+  }
+
+  .columnHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    width: 100%;
+  }
+
+  .sessionQuickFacts div {
+    align-items: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    flex: 0 0 92%;
+    max-width: 330px;
+  }
+
+  .sessionQuickFacts {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .sessionQuickFacts div {
+    padding: 0.75rem;
+  }
+
+  .bookingStudio {
+    padding: 1rem 0.35rem;
+  }
+
+  .calendlyEmbedBox {
+    border-radius: var(--radius-sm);
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y pinch-zoom;
+  }
+
+  .calendlyEmbedBox :global(.calendly-inline-widget),
+  .calendlyEmbedBox iframe {
+    min-width: 320px !important;
+    min-height: 820px !important;
+    height: 820px !important;
+    touch-action: auto !important;
+    pointer-events: auto !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobilePlanTab {
+    font-size: 0.75rem;
+    padding: 0.65rem 0.35rem;
+    gap: 0.3rem;
+  }
+
+  .mobilePlanTabPrice {
+    display: none;
+  }
+
+  .studioTitle {
+    font-size: 1.08rem;
+  }
 }

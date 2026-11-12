@@ -1,312 +1,792 @@
-.impactContainer {
-    background-color: #1E1E1E;
-    z-index: 15;
-
-    height: 50%;
-    padding: 5rem 2rem;
-    position: relative;
+/* Impact Module Styling */
+.impactWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-.impactContent {
-    max-width: 1300px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
+.container {
+  max-width: var(--container-max);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--section-pad-x);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 5vw, 4rem);
 }
 
-/* Header Section */
-.headerSection {
-    text-align: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
+/* Personally Advised Ventures Bar — True Continuous Infinite Marquee */
+.marqueeBar {
+  width: 100%;
+  background-color: #060606;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 1.15rem 0 1.35rem 0;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.95rem;
 }
 
-.headerSection h1 {
-    font-size: var(--h1-size);
-
-    margin: 0;
-    color: var(--text-primary);
-
+.marqueeHeader {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 1rem;
 }
 
-.headerSection h1 span {
-    color: var(--accent-primary);
-
+.marqueeEyebrowDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--accent-gold);
+  box-shadow: 0 0 8px var(--accent-gold);
 }
 
-.headerSection .subtitle {
-    font-size: var(--h3-size);
-    font-weight: 500;
-    color: var(--text-primary);
-    margin: 0;
+.marqueeLabel {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
 }
 
-.headerSection .description {
-    font-size: 1.25rem;
-    /* Slightly larger than body */
-    font-weight: 200;
-    max-width: 800px;
-
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin: 0;
+.marqueeTrack {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
 }
 
-.headerSection .description span {
-    color: var(--accent-primary);
-
+.marqueeGroup {
+  display: flex;
+  align-items: center;
+  gap: 3.5rem;
+  padding-right: 3.5rem;
+  flex-shrink: 0;
+  will-change: transform;
+  animation: marqueeContinuous 26s linear infinite;
 }
 
-.contentGrid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr;
-
-    gap: 4rem;
-    align-items: flex-start;
+.marqueeBar:hover .marqueeGroup {
+  animation-play-state: paused;
 }
 
-
-.achievementsList {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+@keyframes marqueeContinuous {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
-.listHeader h1 {
-    font-size: var(--h2-size);
-    font-weight: 600;
-    margin: 0;
-    color: var(--text-primary);
-    border-bottom: 3px solid rgba(255, 255, 255);
-
-    padding-bottom: 0.5rem;
-
+.marqueeItem {
+  width: 140px;
+  height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  text-decoration: none;
+  transition: transform var(--transition-fast);
 }
 
-.listContent {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+.marqueeItem:hover {
+  transform: translateY(-2px);
 }
 
-.achievementItem {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    justify-items: center;
-
-    gap: 1.5rem;
+.marqueeLogo {
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.8;
+  transition: opacity var(--transition-fast), filter var(--transition-fast), transform var(--transition-fast);
 }
 
-.iconContainer {
-    flex-shrink: 0;
-    width: 3.5rem;
-    height: 3.5rem;
-    border: 1px solid var(--text-primary);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.marqueeItem:hover .marqueeLogo {
+  opacity: 1;
+  filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.45));
+  transform: scale(1.06);
 }
 
-.iconContainer i {
-    font-size: 1.5rem;
-    color: var(--text-primary);
+/* Equalized Logo Optical Sizing */
+.logo_square {
+  height: 44px;
+  max-width: 62px;
 }
 
-.achievementItem p {
-    font-size: var(--p-size);
-    font-weight: 300;
-    line-height: 1.5;
-    color: var(--text-primary);
-    margin: 0;
-    padding-top: 0.5rem;
-
+.logo_medium {
+  height: 36px;
+  max-width: 90px;
 }
 
-.imageWrapper {
-    width: 100%;
-    height: 100%;
-    min-height: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    border-radius: 10px;
-    overflow: hidden;
-    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-
+.logo_wide {
+  height: 25px;
+  max-width: 125px;
 }
 
-
-.imageWrapper .imageContainer1 {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-
+/* Minimalist Authority & Pillars */
+.authoritySection {
+  background-color: var(--bg-secondary);
+  padding: var(--section-pad-y) 0;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
-.imageWrapper .imageContainer2 {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-
+.compactHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.65rem;
+  max-width: 680px;
+  margin: 0 auto;
 }
 
-
-.imageWrapper .imageContainer1 .imageLink,
-.imageWrapper .imageContainer2 .imageLink {
-    flex-shrink: 0;
-    width: 15rem;
-    height: 10rem;
-    display: block;
-    border-radius: 12px;
-    overflow: hidden;
-    max-width: 80vw;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background-color: rgba(255, 255, 255, 0.05);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.eyebrowIndex {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
 }
 
-.imageWrapper .imageContainer1 .imageLink:hover,
-.imageWrapper .imageContainer2 .imageLink:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    z-index: 2;
+.sectionTitle {
+  font-size: var(--h2-size);
+  font-weight: 700;
+  line-height: 1.12;
+  color: var(--text-primary);
 }
 
+.serifAccent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.1em;
+  color: var(--accent-gold-bright);
+}
 
-.imageWrapper .imageContainer1 .imageLink img,
-.imageWrapper .imageContainer2 .imageLink img {
-    width: 80%;
-    height: 80%;
-    object-fit: contain;
-    display: block;
+.conciseSub {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+}
+
+.pillarsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.pillarCard {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  transition: border-color var(--transition-fast);
+}
+
+.pillarCard:hover {
+  border-color: var(--accent-gold-border);
+}
+
+.pillarTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.pillarIndex {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--accent-gold);
+}
+
+.pillarIcon {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  border: 1px solid var(--accent-gold-border);
+  background-color: var(--accent-gold-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-gold-bright);
+  font-size: 1.1rem;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.pillarCard:hover .pillarIcon {
+  background: var(--gradient-gold);
+  color: var(--bg-primary);
+}
+
+.pillarTitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.pillarDesc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* Media, Video & Socials Showcase */
+.mediaSocialsSection {
+  background-color: var(--bg-primary);
+  padding: var(--section-pad-y) 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.mediaHeaderRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.socialCtaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.socialActionCard {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.75rem 1.15rem;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+}
+
+.socialActionCard:hover {
+  border-color: var(--accent-gold);
+  transform: translateY(-2px);
+}
+
+.socialActionCard i:first-child {
+  font-size: 1.35rem;
+  color: var(--accent-gold-bright);
+}
+
+.socialActionCard div {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.socialActionCard strong {
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.socialActionCard span {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+
+.mediaBento {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.videoFeatureCard {
+  width: 100%;
+  height: 400px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  background-color: #0D0D0D;
+  position: relative;
+}
+
+.videoIframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.videoPosterBtn {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  position: relative;
+  cursor: pointer;
+  display: block;
+  overflow: hidden;
+}
+
+.videoPosterImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%) brightness(0.55) contrast(1.15);
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), filter 0.4s ease;
+}
+
+.videoPosterBtn:hover .videoPosterImg {
+  transform: scale(1.03);
+  filter: grayscale(100%) brightness(0.7) contrast(1.15);
+}
+
+.videoOverlay {
+  position: absolute;
+  inset: 0;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  text-align: left;
+  color: var(--text-primary);
+}
+
+.videoBadge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  padding: 0.35rem 0.75rem;
+  background-color: rgba(8, 8, 8, 0.85);
+  border: 1px solid var(--accent-gold-border);
+  color: var(--accent-gold-bright);
+  border-radius: 999px;
+}
+
+.playCircle {
+  align-self: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  background: var(--gradient-gold);
+  color: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.85rem;
+  box-shadow: 0 12px 35px rgba(212, 175, 106, 0.32);
+  transition: transform var(--transition-fast);
+}
+
+.videoPosterBtn:hover .playCircle {
+  transform: scale(1.1);
+}
+
+.videoBottomText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.videoBottomText strong {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.videoBottomText span {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* Verified Media, Podcast & Executive Milestones Strip */
+.pressGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.pressCard {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.pressCard:hover {
+  border-color: var(--accent-gold-border);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+}
+
+.pressThumbLink {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 190px;
+  overflow: hidden;
+  background-color: #0D0D0D;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.pressThumbImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
+  filter: grayscale(35%) contrast(1.06);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), filter 0.4s ease;
+}
+
+.pressCard:hover .pressThumbImg {
+  transform: scale(1.05);
+  filter: grayscale(0%) contrast(1.04);
+}
+
+.pressBadgeOverlay {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background-color: rgba(8, 8, 8, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--accent-gold-border);
+  color: var(--accent-gold-bright);
+}
+
+.pressCardBody {
+  padding: 1.35rem 1.4rem 1.5rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  flex: 1;
+}
+
+.pressTitle {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.28;
+}
+
+.pressSummary {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.pressActionsRow {
+  margin-top: auto;
+  padding-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.pressLinkBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--accent-gold-bright);
+  font-size: 0.84rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  width: fit-content;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.pressLinkBtn:hover {
+  color: var(--text-primary);
+  transform: translateX(3px);
+}
+
+.pressSecondaryLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.pressSecondaryLink:hover {
+  color: var(--accent-gold-bright);
+}
+
+/* Sliding Monochrome Photo Stream (JS requestAnimationFrame + Hover Pause) */
+.photoMarqueeOuter {
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+}
+
+.photoMarqueeTrack {
+  display: flex;
+  gap: 1.25rem;
+  width: max-content;
+  will-change: transform;
+}
+
+.photoCard {
+  position: relative;
+  width: 280px;
+  height: 330px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+  display: block;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.photoCard:hover {
+  border-color: var(--accent-gold);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55);
+}
+
+.photoCardImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  filter: grayscale(20%) contrast(1.06);
+  transition: transform 0.5s ease, filter 0.4s ease;
+}
+
+.photoCard:hover .photoCardImg {
+  transform: scale(1.06);
+  filter: grayscale(0%) contrast(1.04);
+}
+
+.photoCardHover {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 0.85rem 1rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.88), transparent);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--text-primary);
+  transition: color var(--transition-fast);
+}
+
+.photoCard:hover .photoCardHover {
+  color: var(--accent-gold-bright);
+}
+
+.photoTag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
 }
 
 @media (max-width: 1024px) {
-    .contentGrid {
-        grid-template-columns: repeat(2, 1fr);
+  .pillarsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-
-    }
-
-    /* font-size: 5rem; Removed override to stick to variable */
-
-    .listHeader h1 {
-        text-align: center;
-        font-size: 1.7rem;
-    }
-
-    .listContent {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-
+  .pressGrid {
+    grid-template-columns: 1fr;
+  }
 }
 
-/* Mobile */
 @media (max-width: 768px) {
-    .impactContainer {
-        padding: 3rem 1.5rem;
-    }
-
-    .impactContent {
-        gap: 2rem;
-    }
-
-    /* .headerSection h1 {
-        font-size: 2.5rem;
-    } Variable handles this */
-
-    .headerSection .subtitle {
-        font-size: 1.4rem;
-    }
-
-    .listContent {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .contentGrid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .imageWrapper {
-        min-height: 300px;
-    }
-
-    .achievementItem {
-        flex-direction: column;
-        /* Stack icon and text on very small screens? No, side-by-side ok. */
-        align-items: center;
-        text-align: center;
-    }
-
-    .achievementItem p {
-        padding-top: 0;
-    }
-}
-
-/* CTA Section */
-.ctaContainer {
-    display: flex;
+  .mediaHeaderRow {
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
-    margin-top: 2rem;
-    width: 100%;
-}
-
-.ctaContainer p {
-    font-size: var(--p-size);
-    color: var(--text-primary);
     text-align: center;
-    margin: 0;
-    font-weight: 300;
+  }
+
+  .pressCardBody {
+    align-items: center;
+    text-align: center;
+  }
+
+  .pressActionsRow {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .pressLinkBtn,
+  .pressSecondaryLink {
+    justify-content: center;
+    min-height: 2.75rem;
+  }
+
+  .socialCtaRow {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .socialActionCard {
+    flex: 1 1 140px;
+    justify-content: center;
+    min-height: 3rem;
+  }
+
+  .socialActionCard div {
+    align-items: center;
+    text-align: center;
+  }
+
+  .pillarCard {
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem 1.25rem;
+  }
+
+  .pillarTop {
+    width: 100%;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .videoOverlay {
+    padding: 1.25rem 1rem;
+    align-items: center;
+    text-align: center;
+    gap: 0.65rem;
+  }
+
+  .videoBadge {
+    font-size: 0.64rem;
+    letter-spacing: 0.08em;
+    padding: 0.28rem 0.65rem;
+  }
+
+  .playCircle {
+    width: 3.25rem;
+    height: 3.25rem;
+    font-size: 1.35rem;
+    box-shadow: 0 8px 22px rgba(212, 175, 106, 0.26);
+  }
+
+  .videoBottomText {
+    align-items: center;
+  }
+
+  .videoBottomText strong {
+    font-size: 1.05rem;
+    line-height: 1.3;
+  }
+
+  .videoBottomText span {
+    font-size: 0.78rem;
+  }
 }
 
-.ctaButton {
-    background: linear-gradient(90deg, rgba(255, 183, 27, 1) 0%, rgb(119, 82, 1) 100%);
-    color: #ffffff;
-    text-decoration: none;
-    padding: 1rem 2rem;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    font-weight: 600;
-    text-transform: uppercase;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-    display: inline-block;
-    border: none;
-    cursor: pointer;
+@media (max-width: 640px) {
+  .marqueeHeader {
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .marqueeEyebrowDot {
+    display: none;
+  }
+
+  .marqueeLabel {
+    text-align: center;
+    font-size: 0.64rem;
+    letter-spacing: 0.12em;
+  }
+
+  .pillarsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .videoFeatureCard {
+    height: auto;
+    min-height: 290px;
+    aspect-ratio: 16 / 10;
+  }
+
+  .photoCard {
+    width: 220px;
+    height: 260px;
+  }
+
+  .marqueeItem {
+    width: 110px;
+    height: 44px;
+  }
+
+  .marqueeGroup {
+    gap: 2.25rem;
+    padding-right: 2.25rem;
+  }
+
+  .logo_square {
+    height: 38px;
+    max-width: 52px;
+  }
+
+  .logo_medium {
+    height: 32px;
+    max-width: 80px;
+  }
+
+  .logo_wide {
+    height: 22px;
+    max-width: 100px;
+  }
 }
 
-.ctaButton:hover {
-    box-shadow: 0 10px 20px rgba(245, 179, 1, 0.2);
-    transform: translateY(-2px);
-}
+@media (max-width: 480px) {
+  .videoFeatureCard {
+    min-height: 275px;
+  }
 
-@media (max-width: 768px) {
-    .ctaContainer {
-        padding: 0 1rem;
-    }
+  .videoOverlay {
+    padding: 1rem 0.75rem;
+    gap: 0.5rem;
+  }
 
-    .ctaButton {
-        width: 100%;
-        text-align: center;
-        box-sizing: border-box;
-    }
+  .playCircle {
+    width: 2.85rem;
+    height: 2.85rem;
+    font-size: 1.2rem;
+  }
+
+  .videoBadge {
+    font-size: 0.58rem;
+    letter-spacing: 0.06em;
+    padding: 0.22rem 0.55rem;
+  }
+
+  .videoBottomText strong {
+    font-size: 0.92rem;
+    line-height: 1.25;
+  }
+
+  .videoBottomText span {
+    font-size: 0.72rem;
+  }
 }
