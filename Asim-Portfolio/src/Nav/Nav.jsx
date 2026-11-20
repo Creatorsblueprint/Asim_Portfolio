@@ -5,6 +5,7 @@ import { BRAND_LINKS } from '../config/bookingConfig';
 
 const NAV_ITEMS = [
   { id: 'Home', label: 'Overview', href: '#Home' },
+  { id: 'About', label: 'About', href: '#About' },
   { id: 'Impact', label: 'Authority', href: '#Impact' },
   { id: 'Value', label: 'Advisory', href: '#Value' },
   { id: 'Consultation', label: 'Consultations', href: '#Consultation' }
@@ -18,7 +19,7 @@ const Nav = ({ activeNav, setActiveNav, onSelectConsultation }) => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 24);
 
-      const sections = ['Home', 'Impact', 'Value', 'Consultation'];
+      const sections = ['Home', 'About', 'Impact', 'Value', 'Consultation'];
       const scrollPosition = window.scrollY + 180;
 
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -69,7 +70,7 @@ const Nav = ({ activeNav, setActiveNav, onSelectConsultation }) => {
           href="#Home"
           className={styles.brandLink}
           onClick={() => handleNavClick('Home')}
-          aria-label="Asim Swati — Return to top"
+          aria-label="Asim Swati | Return to top"
         >
           <span className={styles.brandDash} aria-hidden="true" />
           <span className={styles.brandName}>ASIM SWATI</span>

@@ -230,8 +230,9 @@
 }
 
 .drawerIndex {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.78rem;
+  font-weight: 600;
   color: var(--accent-gold);
 }
 
@@ -246,8 +247,9 @@
 }
 
 .drawerBoxLabel {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.72rem;
+  font-weight: 600;
   letter-spacing: 0.12em;
   color: var(--accent-gold);
   margin-bottom: 0.2rem;
@@ -295,7 +297,7 @@
 }
 
 .drawerPrice {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.9rem !important;
   font-weight: 600;
   color: inherit !important;

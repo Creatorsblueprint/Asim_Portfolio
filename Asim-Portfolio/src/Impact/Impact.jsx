@@ -1,32 +1,37 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import styles from './Impact.module.css';
 import { fadeInUp, staggerContainer } from '../animations';
-import { BRAND_LINKS, INTRO_VIDEO_URL } from '../config/bookingConfig';
+import { BRAND_LINKS } from '../config/bookingConfig';
+import { ABOUT_TUXEDO_WATCH_HD } from '../config/mediaAssets';
 
 const ADVISORY_PILLARS = [
   {
     index: '01',
-    title: 'Market Validation',
-    description: 'Pinpoint where the real opportunity is for your business in the UAE.',
+    title: 'Market Entry Strategy',
+    description:
+      'Identify high-leverage commercial positioning and viable entry pathways across the UAE and GCC.',
     icon: 'ri-compass-3-line'
   },
   {
     index: '02',
-    title: 'Structure & Visa',
-    description: 'License, jurisdiction & visa decisions matched to your goals.',
+    title: 'Corporate Structuring',
+    description:
+      'International holding frameworks, jurisdictional alignment, and regulatory structures matched to your goals.',
     icon: 'ri-scales-3-line'
   },
   {
     index: '03',
-    title: 'Banking & Setup',
-    description: 'Company formation, banking & compliance built to operate smoothly.',
+    title: 'Banking & Governance',
+    description:
+      'Institutional banking readiness, regulatory compliance, and operational frameworks built for scale.',
     icon: 'ri-building-4-line'
   },
   {
     index: '04',
-    title: 'Scale & Network',
-    description: 'Strategic growth to expand your revenue, network, and market impact.',
+    title: 'Expansion & Network',
+    description:
+      'Cross-border growth strategy backed by high-level institutional access and executive relationships.',
     icon: 'ri-line-chart-line'
   }
 ];
@@ -42,9 +47,7 @@ const VENTURE_LOGOS = [
 ];
 
 const UAE_STORIES_ARTICLE_URL = 'https://uaestories.com/asim-swati-inspires-entrepreneurs-with/';
-const UAE_STORIES_SECOND_IMAGE_URL =
-  'https://b4494830.assetcdn.net/2.0/4494830/wp-content/uploads/2026/04/IMG_7731-scaled-e1775644310680-1024x621.jpg?lossy=1&strip=1&webp=1';
-const TBT_YOUTUBE_WATCH_URL = 'https://www.youtube.com/watch?v=Ocjpq-rV1ZM';
+const TBT_YOUTUBE_SEARCH_URL = 'https://www.youtube.com/results?search_query=Thought+Behind+Things+Asim+Swati';
 
 const PRESS_AND_MILESTONES = [
   {
@@ -52,25 +55,20 @@ const PRESS_AND_MILESTONES = [
     title: 'Helping 1,000+ Founders Build & Structure in Dubai',
     summary:
       'From arriving with a one-way ticket to advising 1,000+ founders, HNIs, and public figures with real-world Dubai corporate clarity.',
-    image: UAE_STORIES_SECOND_IMAGE_URL,
-    fallbackImage: 'Images/Asim/Gallery_5.jpg',
+    image: 'Images/Asim/Gallery_5.jpg',
     imageAlt: 'Asim Swati featured in UAE Stories',
     actionLabel: 'Read UAE Stories Article',
-    href: UAE_STORIES_ARTICLE_URL,
-    icon: 'ri-Newspaper-line'
+    href: UAE_STORIES_ARTICLE_URL
   },
   {
     category: 'PODCAST FEATURE · TBT',
-    title: 'UAE Business, Visa Policy & Market Realities',
+    title: 'UAE Business Landscape & Market Realities',
     summary:
-      'Full-length sit-down with Muzamil Hasan on Thought Behind Things dissecting UAE company setup, regulations, and market entry.',
+      'Full-length conversation with Muzamil Hasan on Thought Behind Things covering Dubai corporate realities, regional markets, and market entry.',
     image: 'Images/Asim/Gallery_2.jpg',
-    fallbackImage: 'Images/Asim/Gallery_2.jpg',
     imageAlt: 'Asim Swati on Thought Behind Things Podcast',
-    actionLabel: 'Watch Full Episode',
-    href: TBT_YOUTUBE_WATCH_URL,
-    isVideoTrigger: true,
-    icon: 'ri-mic-line'
+    actionLabel: 'Watch on YouTube',
+    href: TBT_YOUTUBE_SEARCH_URL
   },
   {
     category: 'EXECUTIVE ADVISORY',
@@ -78,108 +76,88 @@ const PRESS_AND_MILESTONES = [
     summary:
       'Strategic advisory alongside UAE leadership and operational launch of flagship sports and adventure-tourism ventures in Dubai.',
     image: 'Images/Asim/Gallery_1.jpg',
-    fallbackImage: 'Images/Asim/Gallery_1.jpg',
     imageAlt: 'Asim Swati with H.E. Nasser Al Neyadi',
     actionLabel: 'Read Executive Journey',
-    href: `${UAE_STORIES_ARTICLE_URL}#building-a-business-that-impacts-lives`,
-    icon: 'ri-award-line'
+    href: `${UAE_STORIES_ARTICLE_URL}#building-a-business-that-impacts-lives`
   }
 ];
 
-const MEDIA_REEL = [
+const GENERAL_GALLERY = [
   {
-    src: 'Images/Asim/Gallery_5.jpg',
-    tag: 'EXECUTIVE NETWORK',
-    href: 'https://www.instagram.com/asimswatii/reel/DfZso_os2dr/'
+    src: 'Images/Asim/Gallery_1.jpg',
+    alt: 'Asim Swati at an executive business meeting in Dubai'
   },
   {
     src: 'Images/Asim/Gallery_2.jpg',
-    tag: 'TBT PODCAST EPISODE',
-    href: TBT_YOUTUBE_WATCH_URL
-  },
-  {
-    src: 'Images/Asim/Gallery_1.jpg',
-    tag: 'H.E. NASSER AL NEYADI',
-    href: 'https://www.instagram.com/uaestoriesofficial/p/DW3GqajE_fy/'
+    alt: 'Asim Swati at an entrepreneurship event in Dubai'
   },
   {
     src: 'Images/Asim/Gallery_3.jpg',
-    tag: 'EMIRATES PADEL CENTER',
-    href: 'https://www.instagram.com/asimswatii/reel/DfC1Ma7qfMK/'
-  },
-  {
-    src: 'Images/Asim/Gallery_8.jpg',
-    tag: 'SKY ADVENTURES DUBAI',
-    href: 'https://www.instagram.com/asimswatii/p/DfKlsq0itIU/'
-  },
-  {
-    src: 'Images/Asim/Gallery_10.jpg',
-    tag: 'PRIVATE ADVISORY',
-    href: 'https://www.instagram.com/asimswatii/reel/DeJt61TKVaZ/'
+    alt: 'Asim Swati networking with business leaders in the UAE'
   },
   {
     src: 'Images/Asim/Gallery_4.jpg',
-    tag: 'GLOBAL FORUMS',
-    href: 'https://www.instagram.com/asimswatii/reel/DfWxM_FqOVT/'
+    alt: 'Asim Swati attending an international business gathering'
+  },
+  {
+    src: 'Images/Asim/Gallery_5.jpg',
+    alt: 'Asim Swati in conversation at an executive reception'
+  },
+  {
+    src: 'Images/Asim/Gallery_6.jpg',
+    alt: 'Asim Swati at a private business forum in Dubai'
+  },
+  {
+    src: 'Images/Asim/Gallery_7.jpg',
+    alt: 'Asim Swati meeting with founders and partners in the UAE'
+  },
+  {
+    src: 'Images/Asim/Gallery_8.jpg',
+    alt: 'Asim Swati collaborating with venture partners in Dubai'
+  },
+  {
+    src: 'Images/Asim/Gallery_13.jpg',
+    alt: 'Asim Swati during a private advisory strategy session'
+  },
+  {
+    src: 'Images/Asim/Gallery_14.jpg',
+    alt: 'Asim Swati at an industry leadership dinner in Dubai'
+  }
+];
+
+const ABOUT_METRICS = [
+  {
+    value: '12+ Years',
+    label: 'UAE Business & Advisory'
+  },
+  {
+    value: '1,000+',
+    label: 'Founders & Ventures Advised'
+  },
+  {
+    value: 'Dubai, UAE',
+    label: 'Corporate & Cross-Border Focus'
   }
 ];
 
 const Impact = () => {
-  const [playFeatureVideo, setPlayFeatureVideo] = useState(false);
+  const galleryTrackRef = useRef(null);
 
-  const photoTrackRef = useRef(null);
-  const isPhotoPausedRef = useRef(false);
-  const offsetPxRef = useRef(0);
-
-  useEffect(() => {
-    let animationFrameId;
-    let lastTimestamp = null;
-    const photoSpeedPxPerSec = 48;
-
-    const step = (timestamp) => {
-      if (lastTimestamp === null) {
-        lastTimestamp = timestamp;
-      }
-      const deltaSec = Math.min((timestamp - lastTimestamp) / 1000, 0.1);
-      lastTimestamp = timestamp;
-
-      const trackEl = photoTrackRef.current;
-      if (trackEl && !isPhotoPausedRef.current) {
-        const halfWidth = trackEl.scrollWidth / 2;
-        if (halfWidth > 0) {
-          offsetPxRef.current -= photoSpeedPxPerSec * deltaSec;
-          if (Math.abs(offsetPxRef.current) >= halfWidth) {
-            offsetPxRef.current += halfWidth;
-          }
-          trackEl.style.transform = `translate3d(${offsetPxRef.current}px, 0, 0)`;
-        }
-      }
-
-      animationFrameId = window.requestAnimationFrame(step);
-    };
-
-    animationFrameId = window.requestAnimationFrame(step);
-    return () => {
-      if (animationFrameId) {
-        window.cancelAnimationFrame(animationFrameId);
-      }
-    };
-  }, []);
-
-  const handleWatchInterview = () => {
-    setPlayFeatureVideo(true);
-    const videoCard = document.getElementById('featured-interview-player');
-    if (videoCard) {
-      videoCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
+  const handleGalleryScroll = (direction) => {
+    const track = galleryTrackRef.current;
+    if (!track) return;
+    const step = Math.max(300, Math.round(track.clientWidth * 0.72));
+    track.scrollBy({
+      left: direction === 'next' ? step : -step,
+      behavior: 'smooth'
+    });
   };
 
   return (
     <div className={styles.impactWrapper}>
-      {/* Personally Advised Ventures Bar — True Continuous Infinite Loop with Equalized Balanced Sizes */}
+      {/* Personally Advised Ventures Bar */}
       <div className={styles.marqueeBar} aria-label="Businesses Advised">
         <div className={styles.marqueeHeader}>
-          <span className={styles.marqueeEyebrowDot} aria-hidden="true" />
           <span className={styles.marqueeLabel}>BUSINESSES PERSONALLY ADVISED &amp; VENTURE ECOSYSTEM</span>
         </div>
         <div className={styles.marqueeTrack}>
@@ -227,7 +205,75 @@ const Impact = () => {
         </div>
       </div>
 
-      {/* Minimalist Authority & 4 Advisory Pillars */}
+      {/* About Asim Swati Section */}
+      <section id="About" className={styles.aboutSection} aria-labelledby="about-heading">
+        <div className={styles.container}>
+          <div className={styles.aboutGrid}>
+            <motion.div
+              className={styles.aboutVisualCol}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-60px' }}
+              variants={fadeInUp}
+            >
+              <div className={styles.aboutPortraitFrame}>
+                <div className={styles.aboutPortraitGlow} aria-hidden="true" />
+                <img
+                  src={ABOUT_TUXEDO_WATCH_HD}
+                  alt="Asim Swati, Dubai-based entrepreneur and business advisor"
+                  loading="lazy"
+                  decoding="async"
+                  className={styles.aboutPortraitImg}
+                />
+                <div className={styles.aboutPortraitFloorShadow} aria-hidden="true" />
+              </div>
+            </motion.div>
+
+            <motion.div
+              className={styles.aboutContentCol}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-60px' }}
+              variants={staggerContainer}
+            >
+              <motion.span className={styles.eyebrowIndex} variants={fadeInUp}>
+                PROFILE
+              </motion.span>
+              <motion.h2 id="about-heading" className={styles.sectionTitle} variants={fadeInUp}>
+                About <span className={styles.serifAccent}>Asim Swati</span>
+              </motion.h2>
+              <motion.p className={styles.aboutParagraph} variants={fadeInUp}>
+                Asim Swati is a Dubai-based entrepreneur and international business advisor who works
+                with founders, investors, and established companies navigating corporate structuring
+                and market entry in the United Arab Emirates.
+              </motion.p>
+              <motion.p className={styles.aboutParagraph} variants={fadeInUp}>
+                Having built his career in Dubai over the past 12+ years, Asim started from the
+                ground up before co-founding and operating ventures across digital marketing,
+                hospitality, sports, and adventure tourism. Alongside his private-sector work, he
+                has advised over 1,000 founders and worked across both private enterprise and UAE
+                institutional initiatives.
+              </motion.p>
+              <motion.p className={styles.aboutParagraph} variants={fadeInUp}>
+                Today, Asim focuses on private 1-on-1 advisory, helping founders, investors, and
+                global operators make clear, practical decisions on UAE market positioning,
+                corporate structure, banking readiness, and long-term regional expansion.
+              </motion.p>
+
+              <motion.div className={styles.aboutMetricsGrid} variants={fadeInUp}>
+                {ABOUT_METRICS.map((metric) => (
+                  <div key={metric.label} className={styles.aboutMetricCard}>
+                    <strong className={styles.aboutMetricValue}>{metric.value}</strong>
+                    <span className={styles.aboutMetricLabel}>{metric.label}</span>
+                  </div>
+                ))}
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Authority & 4 Advisory Pillars */}
       <section id="Impact" className={styles.authoritySection} aria-label="Authority and Value">
         <div className={styles.container}>
           <motion.div
@@ -241,10 +287,11 @@ const Impact = () => {
               01 / AUTHORITY
             </motion.span>
             <motion.h2 className={styles.sectionTitle} variants={fadeInUp}>
-              What Works in <em className={styles.serifAccent}>Dubai.</em>
+              What Works in <span className={styles.serifAccent}>Dubai.</span>
             </motion.h2>
             <motion.p className={styles.conciseSub} variants={fadeInUp}>
-              5+ years helping founders, investors, and global brands launch and scale.
+              12+ years helping founders, investors, and global enterprises structure and scale in
+              the UAE.
             </motion.p>
           </motion.div>
 
@@ -276,8 +323,8 @@ const Impact = () => {
         </div>
       </section>
 
-      {/* Visuals, Video & Socials Showcase */}
-      <section id="Value" className={styles.mediaSocialsSection} aria-label="Media and Socials">
+      {/* Executive Spotlight, 3 Case Cards & General Swiping Gallery */}
+      <section id="Value" className={styles.mediaSocialsSection} aria-label="Advisory in Action and Media">
         <div className={styles.container}>
           <motion.div
             className={styles.mediaHeaderRow}
@@ -291,7 +338,7 @@ const Impact = () => {
                 02 / IN ACTION &amp; SOCIALS
               </motion.span>
               <motion.h2 className={styles.sectionTitle} variants={fadeInUp}>
-                Inside the <em className={styles.serifAccent}>Network</em>
+                Inside the <span className={styles.serifAccent}>Network</span>
               </motion.h2>
             </div>
 
@@ -326,51 +373,48 @@ const Impact = () => {
             </motion.div>
           </motion.div>
 
-          {/* Featured Video + Verified Press/Milestones + Animated Photo Stream */}
           <div className={styles.mediaBento}>
-            <motion.div
-              id="featured-interview-player"
-              className={styles.videoFeatureCard}
+            {/* Significant Editorial Executive Spotlight (Replaces Top Video Card) */}
+            <motion.article
+              className={styles.executiveFeatureCard}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeInUp}
             >
-              {playFeatureVideo ? (
-                <iframe
-                  src={`${INTRO_VIDEO_URL}&autoplay=1`}
-                  title="Asim Swati — Featured TBT Podcast Interview"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className={styles.videoIframe}
-                />
-              ) : (
-                <button
-                  type="button"
-                  className={styles.videoPosterBtn}
-                  onClick={() => setPlayFeatureVideo(true)}
-                  aria-label="Play Featured Interview on UAE Business & Visa Realities"
-                >
-                  <img
-                    src="Images/Asim/Gallery_2.jpg"
-                    alt="Asim Swati Featured Interview Preview"
-                    className={styles.videoPosterImg}
-                  />
-                  <div className={styles.videoOverlay}>
-                    <span className={styles.videoBadge}>FEATURED INTERVIEW · TBT PODCAST</span>
-                    <div className={styles.playCircle}>
-                      <i className="ri-play-fill" aria-hidden="true"></i>
-                    </div>
-                    <div className={styles.videoBottomText}>
-                      <strong>UAE Business Landscape, Visa Policy &amp; Market Realities</strong>
-                      <span>Featured conversation with Muzamil Hasan · Click to play</span>
-                    </div>
+              <img
+                src="Images/Asim/Gallery_1.jpg"
+                alt="Asim Swati advising international executives and leadership partners in Dubai"
+                loading="lazy"
+                decoding="async"
+                className={styles.executiveFeatureImg}
+              />
+              <div className={styles.executiveFeatureOverlay}>
+                <div className={styles.executiveFeatureBody}>
+                  <h3 className={styles.executiveFeatureTitle}>
+                    Advising 1,000+ Founders, Investors &amp; Flagship UAE Ventures
+                  </h3>
+                  <p className={styles.executiveFeatureDesc}>
+                    Built on more than a decade of hands-on venture building and
+                    private-to-institutional advisory across Dubai, translating regional complexity
+                    into clear corporate execution.
+                  </p>
+                </div>
+                <div className={styles.executiveFeatureFooter}>
+                  <div className={styles.executivePills}>
+                    <span className={styles.executivePill}>12+ Years in Dubai</span>
+                    <span className={styles.executivePill}>1,000+ Founders Advised</span>
+                    <span className={styles.executivePill}>International Corporate Advisory</span>
                   </div>
-                </button>
-              )}
-            </motion.div>
+                  <a href="#Consultation" className={styles.executiveCtaLink}>
+                    <span>Book a Private Consultation</span>
+                    <i className="ri-arrow-right-up-line" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+            </motion.article>
 
-            {/* Verified Media & Executive Milestones Strip with Visuals */}
+            {/* Verified Media & Executive Milestones Strip (3 Case-Specific Cards Retained) */}
             <motion.div
               className={styles.pressGrid}
               initial="hidden"
@@ -390,12 +434,6 @@ const Impact = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={styles.pressThumbLink}
-                    onClick={(e) => {
-                      if (item.isVideoTrigger) {
-                        e.preventDefault();
-                        handleWatchInterview();
-                      }
-                    }}
                     aria-label={item.title}
                   >
                     <img
@@ -404,11 +442,6 @@ const Impact = () => {
                       loading="lazy"
                       decoding="async"
                       className={styles.pressThumbImg}
-                      onError={(e) => {
-                        if (item.fallbackImage && e.currentTarget.src !== item.fallbackImage) {
-                          e.currentTarget.src = item.fallbackImage;
-                        }
-                      }}
                     />
                     <span className={styles.pressBadgeOverlay}>{item.category}</span>
                   </a>
@@ -417,95 +450,64 @@ const Impact = () => {
                     <h3 className={styles.pressTitle}>{item.title}</h3>
                     <p className={styles.pressSummary}>{item.summary}</p>
                     <div className={styles.pressActionsRow}>
-                      {item.isVideoTrigger ? (
-                        <>
-                          <button
-                            type="button"
-                            className={styles.pressLinkBtn}
-                            onClick={handleWatchInterview}
-                          >
-                            <span>Play On-Site</span>
-                            <i className="ri-play-circle-line" aria-hidden="true"></i>
-                          </button>
-                          <a
-                            href={item.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={styles.pressSecondaryLink}
-                          >
-                            <span>YouTube</span>
-                            <i className="ri-arrow-right-up-line" aria-hidden="true"></i>
-                          </a>
-                        </>
-                      ) : (
-                        <a
-                          href={item.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={styles.pressLinkBtn}
-                        >
-                          <span>{item.actionLabel}</span>
-                          <i className="ri-arrow-right-up-line" aria-hidden="true"></i>
-                        </a>
-                      )}
+                      <a
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.pressLinkBtn}
+                      >
+                        <span>{item.actionLabel}</span>
+                        <i className="ri-arrow-right-up-line" aria-hidden="true"></i>
+                      </a>
                     </div>
                   </div>
                 </motion.article>
               ))}
             </motion.div>
 
-            {/* Auto-Scrolling Instagram Reel — Stops Immediately on Hover */}
-            <div
-              className={styles.photoMarqueeOuter}
-              onMouseEnter={() => {
-                isPhotoPausedRef.current = true;
-              }}
-              onMouseLeave={() => {
-                isPhotoPausedRef.current = false;
-              }}
-              onTouchStart={() => {
-                isPhotoPausedRef.current = true;
-              }}
-              onTouchEnd={() => {
-                isPhotoPausedRef.current = false;
-              }}
-            >
-              <div ref={photoTrackRef} className={styles.photoMarqueeTrack}>
-                {[...MEDIA_REEL, ...MEDIA_REEL].map((photo, idx) => (
-                  <a
-                    key={idx}
-                    href={photo.href || BRAND_LINKS.instagramUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.photoCard}
-                    aria-label={`View ${photo.tag}`}
-                    onMouseEnter={() => {
-                      isPhotoPausedRef.current = true;
-                    }}
-                    onFocus={() => {
-                      isPhotoPausedRef.current = true;
-                    }}
-                    onBlur={() => {
-                      isPhotoPausedRef.current = false;
-                    }}
+            {/* General Swiping Photo Gallery (No Client Names / Case Overlays) */}
+            <div className={styles.galleryBlock}>
+              <div className={styles.galleryHeaderBar}>
+                <div>
+                  <span className={styles.eyebrowIndex}>GLOBAL NETWORK &amp; MOMENTS</span>
+                  <h3 className={styles.galleryHeading}>Selected Gatherings &amp; Advisory Moments</h3>
+                </div>
+                <div className={styles.galleryControls}>
+                  <button
+                    type="button"
+                    className={styles.galleryNavBtn}
+                    onClick={() => handleGalleryScroll('prev')}
+                    aria-label="Previous gallery photos"
                   >
+                    <i className="ri-arrow-left-s-line" aria-hidden="true"></i>
+                  </button>
+                  <button
+                    type="button"
+                    className={styles.galleryNavBtn}
+                    onClick={() => handleGalleryScroll('next')}
+                    aria-label="Next gallery photos"
+                  >
+                    <i className="ri-arrow-right-s-line" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div
+                ref={galleryTrackRef}
+                className={styles.gallerySwipeTrack}
+                role="region"
+                aria-label="Asim Swati swiping photo gallery"
+              >
+                {GENERAL_GALLERY.map((photo, idx) => (
+                  <div key={idx} className={styles.gallerySlideCard}>
                     <img
                       src={photo.src}
-                      alt={photo.tag}
+                      alt={photo.alt}
                       loading="lazy"
                       decoding="async"
                       className={styles.photoCardImg}
-                      onError={(e) => {
-                        if (photo.fallbackSrc && e.currentTarget.src !== photo.fallbackSrc) {
-                          e.currentTarget.src = photo.fallbackSrc;
-                        }
-                      }}
                     />
-                    <div className={styles.photoCardHover}>
-                      <span className={styles.photoTag}>{photo.tag}</span>
-                      <i className="ri-arrow-right-up-line" aria-hidden="true"></i>
-                    </div>
-                  </a>
+                  </div>
                 ))}
               </div>
             </div>

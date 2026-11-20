@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { InlineWidget } from 'react-calendly';
 import styles from './Consultation.module.css';
 import { fadeInUp, staggerContainer } from '../animations';
-import { CONSULTATION_OPTIONS, INTRO_VIDEO_URL } from '../config/bookingConfig';
+import { CONSULTATION_OPTIONS, getDarkCalendlyUrl } from '../config/bookingConfig';
 
 const Consultation = ({ selectedTierId, onSelectTier }) => {
   const [localTierId, setLocalTierId] = useState(null);
@@ -73,7 +73,7 @@ const Consultation = ({ selectedTierId, onSelectTier }) => {
             03 / PRIVATE CONSULTATIONS
           </motion.span>
           <motion.h2 className={styles.title} variants={fadeInUp}>
-            Book a <em className={styles.serifItalic}>1-on-1</em> Session
+            Book a <span className={styles.serifItalic}>1-on-1</span> Session
           </motion.h2>
           <motion.p className={styles.subtitle} variants={fadeInUp}>
             Select your consultation below to watch the brief intro and schedule your session
@@ -195,7 +195,7 @@ const Consultation = ({ selectedTierId, onSelectTier }) => {
                     ACTIVE BOOKING · {activeTier.duration.toUpperCase()}
                   </span>
                   <h4 className={styles.studioTitle}>
-                    {activeTier.title} — {activeTier.priceFormatted}
+                    {activeTier.title} | {activeTier.priceFormatted}
                   </h4>
                 </div>
 
@@ -233,8 +233,14 @@ const Consultation = ({ selectedTierId, onSelectTier }) => {
                   <div className={styles.videoFrameWrap}>
                     <iframe
                       key={activeTier.id}
-                      src={`${INTRO_VIDEO_URL}&autoplay=1`}
-                      title={`Intro Video — ${activeTier.title}`}
+                      src={
+                        activeTier.videoUrl
+                          ? activeTier.videoUrl.includes('?')
+                            ? `${activeTier.videoUrl}&autoplay=1`
+                            : `${activeTier.videoUrl}?autoplay=1`
+                          : ''
+                      }
+                      title={`Intro Briefing: ${activeTier.title}`}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
                       className={styles.introIframe}
@@ -264,7 +270,7 @@ const Consultation = ({ selectedTierId, onSelectTier }) => {
                       <strong>Select Your Date &amp; Time</strong>
                     </div>
                     <a
-                      href={activeTier.calendlyUrl}
+                      href={getDarkCalendlyUrl(activeTier.calendlyUrl)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className={styles.directCalendlyLink}

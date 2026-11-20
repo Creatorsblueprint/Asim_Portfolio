@@ -75,35 +75,35 @@
 }
 
 .eyebrowText {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 500;
+  font-family: var(--font-sans);
+  font-size: var(--eyebrow-size);
+  font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--accent-gold);
 }
 
 .headline {
-  font-size: clamp(2.65rem, 5vw, 4.5rem);
-  font-weight: 800;
-  line-height: 1.04;
-  letter-spacing: -0.035em;
+  font-size: var(--h1-size);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
   color: var(--text-primary);
   max-width: 14ch;
 }
 
-.headlineSerif {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 600;
-  font-size: 1.12em;
+.headlineAccent {
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1em;
   color: var(--accent-gold-bright);
 }
 
 .leadCopy {
-  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  font-size: var(--sub-size);
   color: var(--text-secondary);
-  max-width: 40ch;
+  max-width: 42ch;
   line-height: 1.6;
 }
 
@@ -386,5 +386,144 @@
     width: 100%;
     justify-content: center;
     min-height: 3.1rem;
+  }
+}
+
+/* Dark Cinema Intro Modal */
+.introModalBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  background-color: rgba(4, 4, 4, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+}
+
+.introModalCard {
+  width: 100%;
+  max-width: 860px;
+  background-color: #0d0d0d;
+  border: 1px solid var(--accent-gold-border);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.15rem, 2.5vw, 1.75rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.85);
+}
+
+.introModalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.introModalTitleWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.introModalEyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--eyebrow-size);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+}
+
+.introModalTitle {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.introModalClose {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1px solid var(--border-subtle);
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.introModalClose:hover {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold-bright);
+}
+
+.introModalFrame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background-color: #000;
+  border: 1px solid var(--border-subtle);
+}
+
+.introModalIframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.introModalFooter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 0.35rem;
+}
+
+.introModalNote {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.introModalCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  background: var(--gradient-gold);
+  color: var(--bg-primary);
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 0.78rem 1.45rem;
+  border-radius: 999px;
+  border: 1px solid var(--accent-gold);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.introModalCta:hover {
+  background: transparent;
+  color: var(--accent-gold-bright);
+  border-color: var(--accent-gold-bright);
+}
+
+@media (max-width: 600px) {
+  .introModalFooter {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .introModalCta {
+    width: 100%;
   }
 }

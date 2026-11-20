@@ -22,8 +22,8 @@ const Footer = ({ setActiveNav, onSelectConsultation }) => {
               />
             </a>
             <p className={styles.brandSummary}>
-              Private business advisory for individuals, founders, investors, and companies
-              entering or scaling in Dubai.
+              Private corporate structuring and strategic business advisory for founders, investors,
+              and global enterprises in Dubai.
             </p>
           </div>
 
@@ -33,6 +33,11 @@ const Footer = ({ setActiveNav, onSelectConsultation }) => {
               <li>
                 <a href="#Home" onClick={() => handleNav('Home')}>
                   Overview
+                </a>
+              </li>
+              <li>
+                <a href="#About" onClick={() => handleNav('About')}>
+                  About Asim
                 </a>
               </li>
               <li>
@@ -64,7 +69,7 @@ const Footer = ({ setActiveNav, onSelectConsultation }) => {
                     if (onSelectConsultation) onSelectConsultation('discovery-call');
                   }}
                 >
-                  Discovery Call — $499 (30 Min)
+                  Discovery Call | $499 (30 Min)
                 </a>
               </li>
               <li>
@@ -75,7 +80,7 @@ const Footer = ({ setActiveNav, onSelectConsultation }) => {
                     if (onSelectConsultation) onSelectConsultation('business-consultation');
                   }}
                 >
-                  Business Consultation — $1,999 (90 Min)
+                  Business Consultation | $1,999 (90 Min)
                 </a>
               </li>
             </ul>
