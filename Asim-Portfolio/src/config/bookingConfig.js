@@ -11,11 +11,11 @@
 
 export const DISCOVERY_CALL_CALENDLY_URL =
   import.meta.env.VITE_DISCOVERY_CALL_CALENDLY_URL ||
-  'https://calendly.com/asimswati-info/discovery-call-private-strategy-session';
+'https://calendly.com/asimswati-info/discovery-call';
 
 export const BUSINESS_CONSULTATION_CALENDLY_URL =
   import.meta.env.VITE_BUSINESS_CONSULTATION_CALENDLY_URL ||
-  'https://calendly.com/asimswati-info/business-consultation-in-depth-strategic-advisory';
+'https://calendly.com/asimswati-info/business-consultation';
 
 const DEFAULT_BRIEFING_VIDEO_URL =
   import.meta.env.VITE_BOOKING_INTRO_VIDEO_URL ||
